@@ -1,6 +1,5 @@
 @charset "UTF-8";
 /* =================================================================== 
- *
  * TOC:
  * # SETTINGS
  *		## fonts
@@ -4013,6 +4012,11 @@ td:last-child {
 		margin-right   : var(--vspace-0_5);
 		position: relative;
 		top: 50px;
+	}
+	.project-skill-text {
+		color: var(--color-1);
+		position: relative !important;
+		right: 13rem !important;
 	}
 }
 
