@@ -1,9 +1,5 @@
 @charset "UTF-8";
 /* =================================================================== 
- * Monica Main Stylesheet
- * Template Ver. 1.0.0
- * 12-13-2022
- * ------------------------------------------------------------------
  *
  * TOC:
  * # SETTINGS
@@ -4004,7 +4000,19 @@ td:last-child {
 	}
 
 	.s-intro__scroll-down span {
-		display: none;
+		position: absolute;
+	}
+	.s-intro__scroll-down .scroll-icon {
+		display        : flex;
+		justify-content: center;
+		align-items    : center;
+		height         : var(--vspace-1_5);
+		width          : var(--vspace-1_5);
+		border-radius  : 50%;
+		border         : 1px solid var(--color-1);
+		margin-right   : var(--vspace-0_5);
+		position: relative;
+		top: 50px;
 	}
 }
 
