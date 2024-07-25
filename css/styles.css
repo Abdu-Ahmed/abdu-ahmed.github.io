@@ -1,5 +1,10 @@
 @charset "UTF-8";
 /* =================================================================== 
+ * Monica Main Stylesheet
+ * Template Ver. 1.0.0
+ * 12-13-2022
+ * ------------------------------------------------------------------
+ *
  * TOC:
  * # SETTINGS
  *		## fonts
@@ -4342,6 +4347,12 @@ hr {
     width: 5%;
     height: 5%;
 }
+.project-silly {
+    	position: relative;
+        top: 4.3rem;
+        height: 10rem;
+        width: 10rem;
+}
 
 
 .projects-container {
@@ -4422,6 +4433,11 @@ hr {
         right: 1.5%;
 		height: 5rem;
 		width: 5rem;
+    }
+	.project-silly {
+        top: 4.3rem;
+        height: 10rem;
+        width: 10rem;
     }
     .stack {
 		position: relative !important;
