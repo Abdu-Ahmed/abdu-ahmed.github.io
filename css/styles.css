@@ -4179,6 +4179,7 @@ td:last-child {
 	font-size: 17px;
 	text-align: center;
 	margin-bottom: 0;
+	padding: 10px;
 }
 #skills .grid-section-split__primary p:last-of-type {
 	font-size: 18px;
