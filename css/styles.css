@@ -288,10 +288,10 @@
 	--vspace-btn       : var(--vspace-2);
 }
 
-/* on mobile devices below 600px, change the value of '--multiplier' 
+/* on mobile devices below , change the value of '--multiplier' 
  * to adjust the values of base font size and vertical space unit.
  */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: ) {
 	:root {
 		--multiplier: .9375;
 	}
@@ -3521,8 +3521,8 @@ td:last-child {
     }
 
     .hero-img {
-        height: 30rem;
-        width: 30rem !important;
+        height: auto;
+        width: auto !important;
         border: 1px solid var(--color-1);
         border-radius: 20%;
     }
@@ -3551,8 +3551,8 @@ td:last-child {
     }
 
 	.hero-img {
-        height: 20rem;
-        width: 20rem !important; 
+        height: auto;
+        width: auto !important; 
         border: 1px solid var(--color-1);
         border-radius: 20%;
     }
