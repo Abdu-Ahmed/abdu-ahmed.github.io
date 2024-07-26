@@ -3464,8 +3464,8 @@ td:last-child {
     }
 
     .hero-img {
-        height: 35rem;
-        width: 35rem !important;
+        height: auto;
+        width: auto;
         border: 1px solid var(--color-1);
         border-radius: 20%;
     }
@@ -3522,7 +3522,7 @@ td:last-child {
 
     .hero-img {
         height: auto;
-        width: auto !important;
+        width: auto;
         border: 1px solid var(--color-1);
         border-radius: 20%;
     }
@@ -3552,7 +3552,7 @@ td:last-child {
 
 	.hero-img {
         height: auto;
-        width: auto !important; 
+        width: auto; 
         border: 1px solid var(--color-1);
         border-radius: 20%;
     }
