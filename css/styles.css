@@ -1,5 +1,11 @@
 @charset "UTF-8";
 /* =================================================================== 
+ * Monica Main Stylesheet
+ * Template Ver. 1.0.0
+ * 12-13-2022
+ * ------------------------------------------------------------------
+ *
+ * TOC:
  * # SETTINGS
  *		## fonts
  *    	## colors
@@ -288,10 +294,10 @@
 	--vspace-btn       : var(--vspace-2);
 }
 
-/* on mobile devices below , change the value of '--multiplier' 
+/* on mobile devices below 600px, change the value of '--multiplier' 
  * to adjust the values of base font size and vertical space unit.
  */
-@media screen and (max-width: ) {
+@media screen and (max-width: 600px) {
 	:root {
 		--multiplier: .9375;
 	}
@@ -451,13 +457,14 @@ section {
 	display: block;
 }
 .hero-img {
-	height: 35rem;
-	width: 35rem;
-	border: 1px solid var(--color-1) !important;
-	border-radius: 20%;
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: cover;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 35rem;
+    height: 45rem;
+    border: 1px solid var(--color-1);
+    border-radius: 20%;
+    margin: 0 auto;
+    display: block;
 }
 
 body {
@@ -3464,8 +3471,8 @@ td:last-child {
     }
 
     .hero-img {
-        height: auto;
-        width: auto;
+        height: 45rem;
+        width: 35rem !important;
         border: 1px solid var(--color-1);
         border-radius: 20%;
     }
@@ -3521,10 +3528,23 @@ td:last-child {
     }
 
     .hero-img {
-        height: auto;
-        width: auto;
+        height: 40rem;
+        width: 30rem !important;
         border: 1px solid var(--color-1);
         border-radius: 20%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .hero-img {
+        width: 25rem;
+        height: 35rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-img {
+        width: 20rem;
+        height: 30rem;
     }
 }
 
@@ -3551,8 +3571,8 @@ td:last-child {
     }
 
 	.hero-img {
-        height: auto;
-        width: auto; 
+        height: 30rem;
+        width: 20rem !important; 
         border: 1px solid var(--color-1);
         border-radius: 20%;
     }
@@ -4015,7 +4035,7 @@ td:last-child {
 		top: 50px;
 	}
 	.project-skill-text {
-		color: var(--color-1);
+		color: var(--color-1-light);
 		position: relative !important;
 		right: 13rem !important;
 	}
@@ -4171,7 +4191,7 @@ td:last-child {
 }
 
 .skill-text {
-	color: var(--color-1-darker);
+	color: var(--color-black);
 	position: relative;
 	top: 15px;
 }
@@ -4299,8 +4319,6 @@ hr {
 
 /* ===================================================================
  * # PROJECTS
- *
- *
  * ------------------------------------------------------------------- */
  .projects {
     font-size: 1.3rem;
@@ -4325,11 +4343,12 @@ hr {
 }
 
 .project-pic {
-	width: 100%; 
-	height: auto;
+    width: 100%; 
+    height: auto;
     position: relative;
     top: 0.2rem;
 }
+
 .project-pic-loading {
     width: 25%;
     height: 20%;
@@ -4344,31 +4363,85 @@ hr {
     width: 5%;
     height: 5%;
 }
+
 .project-silly {
-    	position: relative;
-        top: 4.3rem;
-        height: 10rem;
-        width: 10rem;
+    position: relative;
+    top: 4.3rem;
+    height: 10rem;
+    width: 10rem;
+}
+
+/* Container and Carousel Styles */
+.container {
+	display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: flex-start; /* Adjust content towards the top */
+    min-height: 100px; /* Minimal height to ensure visibility */
+}
+
+.card {
+    position: absolute;
+    width: 70%; /* Original size */
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    margin: 0 auto;
+    cursor: grab;
+    display: none; /* Hide all cards by default */
+    pointer-events: none;
+}
+
+.card.active {
+    opacity: 1;
+    transform: translateX(-50%) scale(1); /* Active card keeps original size */
+    z-index: 3;
+    left: 50%;
+    position: relative; /* This allows it to affect parent height */
+    display: block;
+}
+
+.card.prev {
+    opacity: 0.4; /* Slightly visible */
+    transform: translateX(-90%) scale(0.9); /* Reduced translation for closer spacing */
+    z-index: 2;
+    position: absolute;
+    left: 65%; /* Adjusted for balanced alignment */
+    top: 0;
+    display: block;
+    margin-right: 5px; /* Minimal margin for separation */
+}
+
+.card.next {
+    opacity: 0.4; /* Slightly visible */
+    transform: translateX(-10%) scale(0.9); /* Reduced translation for closer spacing */
+    z-index: 2;
+    position: absolute;
+    left: 60%; /* Adjusted for balanced alignment */
+    top: 0;
+    display: block;
+    margin-left: 5px; /* Minimal margin for separation */
+}
+
+.card-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Ensure child elements don't extend beyond container */
+    height: 100%; /* Match the parent's height */
+    width: 100%; /* Match the parent's width */
 }
 
 
-.projects-container {
-    position: relative;
-    top: 1rem;
+.project-container {
+	position: relative;
+	right: 85px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-.projects-container a {
-    position: relative;
-    top: 0.5rem;
-    color: var(--box-color);
-}
-
-.projects-container a:hover {
-    color: var(--primary-color);
 }
 
 .project-container h3,
@@ -4387,18 +4460,39 @@ hr {
 }
 
 .stack {
-	position: relative !important;
+    position: relative !important;
     top: 15rem !important;
     font-weight: bold;
     right: 38% !important; 
 }
 
 .project-card {
-    width: 90%;
+    height: 80%;
+    width: 70%;
     margin: 2.5rem;
     padding: 2rem;
     border: 1px solid var(--color-1);
     border-radius: 10px;
+    background: var(--color-2-dark);
+}
+
+.project-skill-text {
+    color: var(--color-1-light);
+    position: relative;
+    top: 1.5rem !important;
+    right: 16%;
+}
+
+.test-acc {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.github-btn {
+    background-color: var(--color-3) !important;
+    border-color: var(--color-3) !important;
+    color: var(--color-1-darker) !important;
 }
 
 /* Responsive Design */
@@ -4420,25 +4514,27 @@ hr {
         top: 15rem; 
     }
 
-	.project-pic {
+    .project-pic {
         width: 100%; 
         height: auto;
     }
 
     .project-lang {
-		top: 0.3rem;
+        top: 0.3rem;
         right: 1.5%;
-		height: 5rem;
-		width: 5rem;
+        height: 5rem;
+        width: 5rem;
     }
-	.project-silly {
+
+    .project-silly {
         top: 4.3rem;
         height: 10rem;
         width: 10rem;
     }
+
     .stack {
-		position: relative !important;
-		top: 2rem !important; /* Adjusted to push up */
+        position: relative !important;
+        top: 2rem !important;
         right: 15%; 
     }
 
@@ -4447,12 +4543,33 @@ hr {
         margin: 1.5rem;
         padding: 1.5rem;
     }
+
+    .card {
+        width: 90%;
+    }
+	.card.active {
+		left: 62%;
+	}
+	.card.prev {
+		width: 55%;
+        transform: translateX(-96%) scale(0.70); /* Slightly smaller scale */
+        left: 66.5%; /* Adjusted for balanced alignment */
+        margin-right: 5px; /* Keep separation */
+    }
+
+    .card.next {
+		width: 55%;
+        transform: translateX(5%) scale(0.85); /* Slightly smaller scale */
+        left: 57%; /* Adjusted for balanced alignment */
+        margin-left: 5px; /* Keep separation */
+    }
+	
 }
 
 @media (max-width: 480px) {
     .s-contact__content {
         top: 1rem;
-		width: 92%; 
+        width: 92%; 
     }
 
     .projects {
@@ -4477,45 +4594,45 @@ hr {
     }
 
     .stack {
-		position: relative !important;
-		top: 2rem !important; /* Adjusted to push up */
+        position: relative !important;
+        top: 2rem !important;
         right: 3% !important; 
+    }
+	.card.active {
+		left: 66.5%;
+	}
+	.card.prev {
+		width: 65.5%;
+        transform: translateX(-110%) scale(0.75); /* Further separation on very small screens */
+        left: 80.5%; /* Adjust for compact view */
+		top: 2%;
+    }
+
+    .card.next {
+		width: 65%;
+        transform: translateX(16%) scale(0.75); /* Further separation on very small screens */
+        left: 45%; /* Adjust for compact view */
     }
 	
 }
-.project-skill-text {
-	color: var(--color-1);
-	position: relative;
-	top: 1.5rem !important;
-	right: 16%;
-}
-.test-acc {
-	display: flex;
-	justify-content: end;
-	align-items: end;
-}
-.github-btn {
-	background-color: var(--color-3) !important;
-	border-color: var(--color-3) !important;
-	color: var(--color-1-darker) !important;
-}
-/* ------------------------------------------------------------------- 
- * responsive:
- * PROJECTS
- * ------------------------------------------------------------------- */
-@media screen and (max-width: 1000px) {
-	.s-projects__content .btn {
-		width       : 100%;
-		margin-right: 0;
-	}
+.card.prev, .card.next {
+    cursor: pointer;
+    pointer-events: auto;
 }
 
+/* Hover effect for prev/next cards */
+.card.prev:hover {
+    opacity: 0.6;
+    transform: translateX(-100%) scale(0.92); /* Slightly larger on hover */
+}
+.card.next:hover {
+    opacity: 0.6;
+    transform: scale(0.92); /* Slightly larger on hover */
+}
 
 
 /* ===================================================================
  * # CONTACT
- *
- *
  * ------------------------------------------------------------------- */
  .s-contact {
     padding-top: var(--vspace-6);
@@ -4539,19 +4656,29 @@ hr {
     position: relative;
     top: 7rem;
     border-radius: 10px;
-    flex-wrap: wrap; /* Added for responsiveness */
-    padding: 1rem; /* Added padding for smaller devices */
+    flex-wrap: wrap;
+    padding: 1rem;
+    max-width: 950px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.contact-card__form {
+    /* Added width control for the form itself */
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 .contact-card__form input,
 .contact-card__form textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     border: 1px solid var(--color-1);
+    border-radius: 5px;
 }
 
+/* Rest of the styles remain the same */
 .s-contact a {
     color: var(--color-1);
 }
@@ -4592,8 +4719,6 @@ hr {
 .s-contact__content-main {
     margin-top: var(--vspace-2);
 }
-
-
 
 /* ===================================================================
  * # FOOTER
