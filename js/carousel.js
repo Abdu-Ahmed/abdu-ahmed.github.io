@@ -111,9 +111,9 @@ class Carousel {
         // Trigger swipe based on movement distance or velocity
         if (Math.abs(totalMovement) > this.swipeThreshold || velocity > 0.5) {
             if (totalMovement < 0) { // Changed direction logic here
-                this.prev();
-            } else {
                 this.next();
+            } else {
+                this.prev();
             }
             this.touchEnd(e);
         }
@@ -130,9 +130,9 @@ class Carousel {
         // Check for quick swipes
         if (totalTime < this.swipeTimeThreshold && Math.abs(totalMovement) > (this.swipeThreshold / 2)) {
             if (totalMovement < 0) { // Changed direction logic here
-                this.prev();
-            } else {
                 this.next();
+            } else {
+                this.prev();
             }
         }
         
