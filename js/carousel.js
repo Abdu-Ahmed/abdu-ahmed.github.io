@@ -9,8 +9,8 @@ class Carousel {
         this.lastTranslate = 0;
         this.lastTime = 0;
         this.lastPosition = 0;
-        this.swipeThreshold = 50;
-        this.swipeTimeThreshold = 300; // Max time for a swipe in ms
+        this.swipeThreshold = 30;
+        this.swipeTimeThreshold = 200; // Max time for a swipe in ms
 
         this.init();
         this.addEventListeners();
