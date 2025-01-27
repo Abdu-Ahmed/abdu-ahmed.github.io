@@ -9,8 +9,8 @@ class Carousel {
         this.lastTranslate = 0;
         this.lastTime = 0;
         this.lastPosition = 0;
-        this.swipeThreshold = 30;
-        this.swipeTimeThreshold = 200; // Max time for a swipe in ms
+        this.swipeThreshold = 30; // Keeping the reduced threshold
+        this.swipeTimeThreshold = 200; // Keeping the reduced time threshold
 
         this.init();
         this.addEventListeners();
@@ -110,7 +110,7 @@ class Carousel {
         
         // Trigger swipe based on movement distance or velocity
         if (Math.abs(totalMovement) > this.swipeThreshold || velocity > 0.5) {
-            if (totalMovement > 0) {
+            if (totalMovement < 0) { // Changed direction logic here
                 this.prev();
             } else {
                 this.next();
@@ -129,7 +129,7 @@ class Carousel {
         
         // Check for quick swipes
         if (totalTime < this.swipeTimeThreshold && Math.abs(totalMovement) > (this.swipeThreshold / 2)) {
-            if (totalMovement > 0) {
+            if (totalMovement < 0) { // Changed direction logic here
                 this.prev();
             } else {
                 this.next();
