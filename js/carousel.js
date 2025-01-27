@@ -7,6 +7,10 @@ class Carousel {
         this.startPos = 0;
         this.currentTranslate = 0;
         this.lastTranslate = 0;
+        this.lastTime = 0;
+        this.lastPosition = 0;
+        this.swipeThreshold = 50;
+        this.swipeTimeThreshold = 300; // Max time for a swipe in ms
 
         this.init();
         this.addEventListeners();
@@ -50,7 +54,7 @@ class Carousel {
 
     addEventListeners() {
         // Click on prev/next cards
-        this.cards.forEach((card, index) => {
+        this.cards.forEach((card) => {
             card.addEventListener('click', () => {
                 if (card.classList.contains('prev')) {
                     this.prev();
@@ -60,22 +64,29 @@ class Carousel {
             });
         });
 
-        // Touch/mouse events for swiping
-        this.carousel.addEventListener('touchstart', (e) => this.touchStart(e));
-        this.carousel.addEventListener('touchmove', (e) => this.touchMove(e));
-        this.carousel.addEventListener('touchend', () => this.touchEnd());
+        // Touch events
+        this.carousel.addEventListener('touchstart', (e) => this.touchStart(e), { passive: true });
+        this.carousel.addEventListener('touchmove', (e) => this.touchMove(e), { passive: true });
+        this.carousel.addEventListener('touchend', (e) => this.touchEnd(e));
 
+        // Mouse events
         this.carousel.addEventListener('mousedown', (e) => this.touchStart(e));
         this.carousel.addEventListener('mousemove', (e) => this.touchMove(e));
-        this.carousel.addEventListener('mouseup', () => this.touchEnd());
-        this.carousel.addEventListener('mouseleave', () => this.touchEnd());
+        this.carousel.addEventListener('mouseup', (e) => this.touchEnd(e));
+        this.carousel.addEventListener('mouseleave', (e) => this.touchEnd(e));
 
         this.carousel.addEventListener('contextmenu', (e) => e.preventDefault());
+    }
+
+    getPositionX(e) {
+        return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
     }
 
     touchStart(e) {
         this.isDragging = true;
         this.startPos = this.getPositionX(e);
+        this.lastPosition = this.startPos;
+        this.lastTime = Date.now();
         this.carousel.style.cursor = 'grabbing';
     }
 
@@ -83,25 +94,50 @@ class Carousel {
         if (!this.isDragging) return;
         
         const currentPosition = this.getPositionX(e);
-        const diff = currentPosition - this.startPos;
+        const currentTime = Date.now();
+        const timeDiff = currentTime - this.lastTime;
+        const movement = currentPosition - this.lastPosition;
         
-        if (Math.abs(diff) > 100) {
-            if (diff > 0) {
+        // Calculate velocity (pixels per millisecond)
+        const velocity = Math.abs(movement / timeDiff);
+        
+        // Update last position and time
+        this.lastPosition = currentPosition;
+        this.lastTime = currentTime;
+        
+        // Total movement from start
+        const totalMovement = currentPosition - this.startPos;
+        
+        // Trigger swipe based on movement distance or velocity
+        if (Math.abs(totalMovement) > this.swipeThreshold || velocity > 0.5) {
+            if (totalMovement > 0) {
                 this.prev();
             } else {
                 this.next();
             }
-            this.touchEnd();
+            this.touchEnd(e);
         }
     }
 
-    touchEnd() {
+    touchEnd(e) {
+        if (!this.isDragging) return;
+        
+        const endTime = Date.now();
+        const totalTime = endTime - this.lastTime;
+        const endPosition = this.getPositionX(e);
+        const totalMovement = endPosition - this.startPos;
+        
+        // Check for quick swipes
+        if (totalTime < this.swipeTimeThreshold && Math.abs(totalMovement) > (this.swipeThreshold / 2)) {
+            if (totalMovement > 0) {
+                this.prev();
+            } else {
+                this.next();
+            }
+        }
+        
         this.isDragging = false;
         this.carousel.style.cursor = 'grab';
-    }
-
-    getPositionX(e) {
-        return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
     }
 }
 
