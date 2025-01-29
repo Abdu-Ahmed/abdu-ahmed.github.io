@@ -4629,7 +4629,7 @@ hr {
     opacity: 0.6;
     transform: scale(0.92); /* Slightly larger on hover */
 }
-.card .btn {
+.project-btn, .github-btn {
     pointer-events: auto;
     z-index: 10;
 }
