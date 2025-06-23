@@ -51,6 +51,8 @@
         }
         
         .s-header__logo img {
+            position: relative;
+            bottom: 2px;
             height: 4rem;
             width: 4rem;
             margin-right: 10px;
@@ -768,6 +770,12 @@
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            .s-header__logo img {
+            height: 3rem;
+            width: 3rem;     
+            position: relative;    
+            top: 2px;
+            }
             .s-header__inner {
                 flex-direction: row;
             }
@@ -795,10 +803,6 @@
             #typing-text {
                 font-size: 2.4rem;
                 bottom: 2px;
-            }
-            .s-header__logo img {
-                height: 3.5rem;
-                width: 3.5rem;
             }
             
          .card-carousel {
@@ -832,6 +836,12 @@
         }
         
         @media (max-width: 480px) {
+            .s-header__logo img {
+            height: 2rem;
+            width: 2rem;   
+            position: relative;    
+            top: 1px;
+            }
             .s-header__nav {
                 display: none; 
             }
@@ -851,10 +861,6 @@
             }
             #typing-text {
                 font-size: 1.8rem;
-            }
-            .s-header__logo img {
-                height: 2rem;
-                width: 2rem;
             }
             
     .card {
